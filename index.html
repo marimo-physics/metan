@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>め〜ちゃん 非公式ファンサイト</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="cloud-bg"></div>
+    
+    <header class="header">
+        <div class="container">
+            <h1 class="title">
+                <span class="title-main">め〜ちゃん</span>
+                <span class="title-sub">非公式ファンサイト</span>
+            </h1>
+            <p class="tagline">ふわふわ可愛いVTuberのめ〜ちゃんを応援するサイト</p>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#about" class="nav-link">プロフィール</a></li>
+                <li><a href="#gallery" class="nav-link">ギャラリー</a></li>
+                <li><a href="#activities" class="nav-link">活動</a></li>
+                <li><a href="#support" class="nav-link">応援</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main">
+        <section id="about" class="section about-section">
+            <div class="container">
+                <h2 class="section-title">プロフィール</h2>
+                <div class="profile-card">
+                    <div class="profile-image">
+                        <img src="img/20250725_030531238_iOS.jpg" alt="め〜ちゃん" class="profile-img">
+                    </div>
+                    <div class="profile-info">
+                        <h3 class="profile-name">め〜</h3>
+                        <div class="profile-details">
+                            <p class="profile-text">
+                                白髪に青い瞳が美しいVTuber。<br>
+                                ゴシック調の黒い衣装がトレードマーク。<br>
+                                優しい笑顔で多くのファンを魅了している。
+                            </p>
+                            <div class="profile-tags">
+                                <span class="tag">VTuber</span>
+                                <span class="tag">配信者</span>
+                                <span class="tag">可愛い</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="section gallery-section">
+            <div class="container">
+                <h2 class="section-title">ギャラリー</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="img/20250725_030552512_iOS.jpg" alt="め〜ちゃん 1" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="img/20250725_030454316_iOS.jpg" alt="め〜ちゃん 2" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="img/20250725_030504171_iOS.jpg" alt="め〜ちゃん 3" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="img/20250725_030459417_iOS.jpg" alt="め〜ちゃん 4" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="img/20250725_030419704_iOS.jpg" alt="め〜ちゃん 5" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="img/20250725_030556085_iOS.jpg" alt="め〜ちゃん 6" class="gallery-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="activities" class="section activities-section">
+            <div class="container">
+                <h2 class="section-title">活動情報</h2>
+                <div class="activities-grid">
+                    <div class="activity-card">
+                        <div class="activity-icon">🎮</div>
+                        <h3 class="activity-title">ゲーム配信</h3>
+                        <p class="activity-text">様々なゲームを楽しく実況配信</p>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-icon">🎵</div>
+                        <h3 class="activity-title">歌配信</h3>
+                        <p class="activity-text">美しい歌声でファンを魅了</p>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-icon">💬</div>
+                        <h3 class="activity-title">雑談配信</h3>
+                        <p class="activity-text">リスナーとの楽しい会話</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="support" class="section support-section">
+            <div class="container">
+                <h2 class="section-title">応援メッセージ</h2>
+                <div class="support-card">
+                    <div class="message-form">
+                        <h3 class="form-title">め〜ちゃんに応援メッセージを送ろう！</h3>
+                        <form class="form">
+                            <div class="form-group">
+                                <label for="name" class="form-label">お名前</label>
+                                <input type="text" id="name" class="form-input" placeholder="匿名でもOK">
+                            </div>
+                            <div class="form-group">
+                                <label for="message" class="form-label">メッセージ</label>
+                                <textarea id="message" class="form-textarea" rows="4" placeholder="め〜ちゃんへの応援メッセージをどうぞ"></textarea>
+                            </div>
+                            <button type="button" class="form-button" onclick="sendMessage()">メッセージを送る</button>
+                        </form>
+                    </div>
+                    <div class="message-display">
+                        <h3 class="display-title">みんなの応援メッセージ</h3>
+                        <div id="messageList" class="message-list">
+                            <div class="message-item">
+                                <div class="message-author">ファン1</div>
+                                <div class="message-content">め〜ちゃん、いつも可愛い配信をありがとう！</div>
+                            </div>
+                            <div class="message-item">
+                                <div class="message-author">リスナー</div>
+                                <div class="message-content">今度も楽しい配信を楽しみにしています♪</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                ※ これは非公式ファンサイトです<br>
+                め〜ちゃんの公式情報は各配信プラットフォームでご確認ください
+            </p>
+            <div class="footer-hearts">
+                <span class="heart">💙</span>
+                <span class="heart">💛</span>
+                <span class="heart">💚</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
