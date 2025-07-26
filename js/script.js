@@ -1,5 +1,101 @@
+// 跳ね返る水玉のアニメーション
+class BouncingDot {
+    constructor(container, id) {
+        this.container = container;
+        this.id = id;
+        this.element = document.createElement('div');
+        this.element.className = 'bouncing-dot';
+        
+        // 初期設定
+        this.size = 10 + Math.random() * 15;
+        this.opacity = 0.15 + Math.random() * 0.25;
+        
+        // 初期位置（端から少し離れた場所）
+        this.x = this.size + Math.random() * (window.innerWidth - this.size * 2);
+        this.y = this.size + Math.random() * (window.innerHeight - this.size * 2);
+        
+        // 速度（ランダム方向）
+        const speed = 0.5 + Math.random() * 1.5;
+        const angle = Math.random() * Math.PI * 2;
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed;
+        
+        this.element.style.cssText = `
+            position: fixed;
+            left: ${this.x}px;
+            top: ${this.y}px;
+            width: ${this.size}px;
+            height: ${this.size}px;
+            background: rgba(255, 255, 255, ${this.opacity});
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        `;
+        
+        this.container.appendChild(this.element);
+    }
+    
+    update() {
+        // 位置を更新
+        this.x += this.vx;
+        this.y += this.vy;
+        
+        // 壁との衝突判定と跳ね返り
+        if (this.x <= 0 || this.x >= window.innerWidth - this.size) {
+            this.vx = -this.vx;
+            this.x = Math.max(0, Math.min(window.innerWidth - this.size, this.x));
+        }
+        
+        if (this.y <= 0 || this.y >= window.innerHeight - this.size) {
+            this.vy = -this.vy;
+            this.y = Math.max(0, Math.min(window.innerHeight - this.size, this.y));
+        }
+        
+        // 要素の位置を更新
+        this.element.style.left = this.x + 'px';
+        this.element.style.top = this.y + 'px';
+    }
+}
+
+// 跳ね返る水玉を作成
+function createBouncingDots() {
+    const cloudBg = document.querySelector('.cloud-bg');
+    const dots = [];
+    const dotCount = 45;
+    
+    // 水玉を作成
+    for (let i = 0; i < dotCount; i++) {
+        dots.push(new BouncingDot(cloudBg, i));
+    }
+    
+    // アニメーションループ
+    function animate() {
+        dots.forEach(dot => dot.update());
+        requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    // ウィンドウサイズ変更時の対応
+    window.addEventListener('resize', () => {
+        dots.forEach(dot => {
+            // 画面外に出た水玉を画面内に戻す
+            if (dot.x > window.innerWidth - dot.size) {
+                dot.x = window.innerWidth - dot.size;
+                dot.vx = -Math.abs(dot.vx);
+            }
+            if (dot.y > window.innerHeight - dot.size) {
+                dot.y = window.innerHeight - dot.size;
+                dot.vy = -Math.abs(dot.vy);
+            }
+        });
+    });
+}
+
 // スムーススクロール機能
 document.addEventListener('DOMContentLoaded', function() {
+    // 跳ね返る水玉のアニメーションを初期化
+    createBouncingDots();
     // ナビゲーションリンクのスムーススクロール
     const navLinks = document.querySelectorAll('.nav-link');
     
@@ -230,16 +326,7 @@ function createHeartEffect() {
     }
 }
 
-// パララックス効果
-window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
-    const rate = scrolled * -0.5;
-    
-    const cloudBg = document.querySelector('.cloud-bg');
-    if (cloudBg) {
-        cloudBg.style.transform = `translateY(${rate}px)`;
-    }
-});
+// パララックス効果は削除（跳ね返るアニメーションには不要）
 
 // ページ読み込み完了時のアニメーション
 window.addEventListener('load', function() {
